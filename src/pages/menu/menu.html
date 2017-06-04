@@ -1,0 +1,26 @@
+<ion-menu [content]="content" swipeEnabled=true>
+  <ion-header>
+    <div align="center" (click)="goToProfile()" menuClose class="gradien-menu">
+      <br>
+      <br>
+      <img style="border-radius:60%;width: 6em; height: 6em;margin-left:15px;" src="assets/img/me.jpg" onError="this.src='assets/img/no-photo.gif'">
+      <br>
+      <br>
+      <div style="font-size:1.5em;margin-bottom:10px;margin-left:15px;">
+        Superadmin
+        <!--<div style="font-size:0.6em;color:#E1E1E1;">Point: {{point}} pts</div>-->
+        <div style="font-size:0.6em;">2015477024</div>
+      </div>
+      <br>
+    </div>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <button  menuClose detail-none ion-item *ngFor="let p of pages" (click)="openPage(p)">
+        <ion-icon name="{{p.icons}}" item-left style="color: grey;"></ion-icon>
+        <ion-label>{{p.title}}</ion-label>
+      </button >
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

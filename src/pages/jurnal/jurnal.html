@@ -1,0 +1,34 @@
+<!--
+  Generated template for the JurnalPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="secondary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Jurnal</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-padding>
+  <ion-list>
+    <ion-item-divider>
+      List Jurnal
+    </ion-item-divider>
+    <button ion-item>
+      <ion-avatar item-left>
+        <img src="assets/img/me.jpg" onerror="this.src='assets/img/no-photo.gif'" />
+      </ion-avatar>
+      <div (click)="detailFeeds(data)">
+        <h2 style="font-size: 0.9em;">Jeje Abdul Rahman</h2>
+        <p>2015477024</p>
+      </div>
+    </button>
+  </ion-list>
+</ion-content>
