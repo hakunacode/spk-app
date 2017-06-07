@@ -1,0 +1,42 @@
+<ion-content padding style="background-image: url('assets/img/hijauabu.jpg')" page-sign-in>
+  <br><br>
+  <div text-center>
+    <img src="assets/img/UMJ.png" width="120px" height="120px">
+    <h2 style="color:white">Fakultas Teknik Informatika</h2>
+  </div>
+
+  <form [formGroup]="myForm" (ngSubmit)="goLogin(myForm.value)">
+    <ion-item>
+      <img src="assets/auth/name-member.png" item-left style="width:45px; height:45px;">
+      <ion-input type="text" formControlName="username" placeholder="Username"></ion-input>
+    </ion-item>
+    <ion-item [hidden]="showpass == true">
+      <img src="assets/auth/password-member.png" item-left [hidden]="showpass == true" style="width:45px; height:45px;">
+      <ion-input type="password" #pass formControlName="password" (keyup)="onKey(pass.value)" [hidden]="showpass == true" placeholder="Password"></ion-input>
+    </ion-item>
+    <ion-item [hidden]="showpass == false">
+      <img src="assets/auth/password-member.png" item-left [hidden]="showpass == false" style="width:45px; height:45px;">
+      <ion-input type="text" formControlName="password" placeholder="Password" value="{{values}}"></ion-input>
+    </ion-item>
+    <!--<ion-list unset>
+      <ion-item style="margin-left:12px;">
+        <ion-icon name="eye" *ngIf="showpass" item-left (click)="passView('showpass')"></ion-icon>
+        <ion-icon name="eye-off" *ngIf="!showpass" item-left (click)="passView('showpass')"></ion-icon>
+        <ion-label style="font-size:0.8em;" *ngIf="showpass" (click)="passView('showpass')">Show Password</ion-label>
+        <ion-label style="font-size:0.8em;" *ngIf="!showpass" (click)="passView('showpass')">Hide Password</ion-label>
+      </ion-item>
+    </ion-list>-->
+    <ion-item>
+      <img src="assets/auth/icon-name.png" item-left style="width:45px; height:45px;">
+      <ion-select [(ngModel)]="isflag" placeholder="Pilih jenis user" formControlName="isflag">
+          <ion-option value="1">Pegawai</ion-option>
+          <ion-option value="2">Dosen</ion-option>
+          <ion-option value="3">Mahasiswa</ion-option>
+        </ion-select>
+    </ion-item>
+    <br>
+    <button ion-button block color="secondary" [disabled]="!myForm.valid">Sign In</button>
+    <br>
+    <!--<div text-center><a (click)="goForgotPassword();">Forgot Password?</a></div>-->
+  </form>
+</ion-content>

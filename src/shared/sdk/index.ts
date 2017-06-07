@@ -44,10 +44,20 @@ import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CookieBrowser } from './storage/cookie.browser';
 import { StorageBrowser } from './storage/storage.browser';
-import { UserApi } from './services/custom/User';
-import { MahasiswaApi } from './services/custom/Mahasiswa';
+import { AuthApi } from './services/custom/Auth';
+import { AccesstokenApi } from './services/custom/Accesstoken';
+import { RolemappingApi } from './services/custom/Rolemapping';
+import { ContainerApi } from './services/custom/Container';
 import { TmMahasiswaApi } from './services/custom/TmMahasiswa';
-import { CalendarApi } from './services/custom/Calendar';
+import { TmPegawaiApi } from './services/custom/TmPegawai';
+import { TmDosenApi } from './services/custom/TmDosen';
+import { TbUserApi } from './services/custom/TbUser';
+import { TbCalendarApi } from './services/custom/TbCalendar';
+import { TbChatroomApi } from './services/custom/TbChatroom';
+import { TbChatusertoApi } from './services/custom/TbChatuserto';
+import { TbChatuserApi } from './services/custom/TbChatuser';
+import { TbChatroomlistApi } from './services/custom/TbChatroomlist';
+import { TbChatroomdetailApi } from './services/custom/TbChatroomdetail';
 /**
 * @module SDKBrowserModule
 * @description
@@ -77,10 +87,20 @@ export class SDKBrowserModule {
         LoggerService,
         JSONSearchParams,
         SDKModels,
-        UserApi,
-        MahasiswaApi,
+        AuthApi,
+        AccesstokenApi,
+        RolemappingApi,
+        ContainerApi,
         TmMahasiswaApi,
-        CalendarApi,
+        TmPegawaiApi,
+        TmDosenApi,
+        TbUserApi,
+        TbCalendarApi,
+        TbChatroomApi,
+        TbChatusertoApi,
+        TbChatuserApi,
+        TbChatroomlistApi,
+        TbChatroomdetailApi,
         internalStorageProvider,
         { provide: SDKStorage, useClass: StorageBrowser }
       ]

@@ -10,14 +10,14 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { Mahasiswa } from '../../models/Mahasiswa';
+import { Auth } from '../../models/Auth';
 
 
 /**
- * Api services for the `Mahasiswa` model.
+ * Api services for the `Auth` model.
  */
 @Injectable()
-export class MahasiswaApi extends BaseLoopBackApi {
+export class AuthApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -42,13 +42,13 @@ export class MahasiswaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Mahasiswa` object.)
+   * This usually means the response is a `Auth` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/mahasiswas";
+    "/auths";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -61,7 +61,7 @@ export class MahasiswaApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id mahasiswa id
+   * @param {any} id auth id
    *
    * @param {object} data Request data.
    *
@@ -73,13 +73,13 @@ export class MahasiswaApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Mahasiswa` object.)
+   * This usually means the response is a `Auth` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/mahasiswas/:id";
+    "/auths/:id";
     let _routeParams: any = {
       id: id
     };
@@ -92,10 +92,72 @@ export class MahasiswaApi extends BaseLoopBackApi {
   }
 
   /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Auth` object.)
+   * </em>
+   */
+  public doAddMhs(params: any): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/auths/doAddMhs";
+    let _routeParams: any = {};
+    let _postBody: any = {
+      params: params
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody);
+    return result;
+  }
+
+  /**
+   * <em>
+         * (The remote method definition does not provide any description.)
+         * </em>
+   *
+   * @param {object} data Request data.
+   *
+   * This method expects a subset of model properties as request parameters.
+   *
+   * @returns {object} An empty reference that will be
+   *   populated with the actual data once the response is returned
+   *   from the server.
+   *
+   * <em>
+   * (The remote method definition does not provide any description.
+   * This usually means the response is a `Auth` object.)
+   * </em>
+   */
+  public doLogin(params: any): Observable<any> {
+    let _method: string = "POST";
+    let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
+    "/auths/doLogin";
+    let _routeParams: any = {};
+    let _postBody: any = {
+      params: params
+    };
+    let _urlParams: any = {};
+    let result = this.request(_method, _url, _routeParams, _urlParams, _postBody);
+    return result;
+  }
+
+  /**
    * The name of the model represented by this $resource,
-   * i.e. `Mahasiswa`.
+   * i.e. `Auth`.
    */
   public getModelName() {
-    return "Mahasiswa";
+    return "Auth";
   }
 }

@@ -10,14 +10,14 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { Calendar } from '../../models/Calendar';
+import { TbChatuser } from '../../models/TbChatuser';
 
 
 /**
- * Api services for the `Calendar` model.
+ * Api services for the `TbChatuser` model.
  */
 @Injectable()
-export class CalendarApi extends BaseLoopBackApi {
+export class TbChatuserApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -42,13 +42,13 @@ export class CalendarApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Calendar` object.)
+   * This usually means the response is a `TbChatuser` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Calendars";
+    "/TbChatusers";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -61,7 +61,7 @@ export class CalendarApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id Calendar id
+   * @param {any} id TbChatuser id
    *
    * @param {object} data Request data.
    *
@@ -73,13 +73,13 @@ export class CalendarApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Calendar` object.)
+   * This usually means the response is a `TbChatuser` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Calendars/:id";
+    "/TbChatusers/:id";
     let _routeParams: any = {
       id: id
     };
@@ -93,9 +93,9 @@ export class CalendarApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Calendar`.
+   * i.e. `TbChatuser`.
    */
   public getModelName() {
-    return "Calendar";
+    return "TbChatuser";
   }
 }

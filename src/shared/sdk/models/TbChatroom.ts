@@ -1,32 +1,34 @@
 /* tslint:disable */
 
 declare var Object: any;
-export interface MahasiswaInterface {
+export interface TbChatroomInterface {
+  "created"?: Date;
   "id"?: number;
-  "nim": number;
+  "room"?: string;
 }
 
-export class Mahasiswa implements MahasiswaInterface {
+export class TbChatroom implements TbChatroomInterface {
+  "created": Date;
   "id": number;
-  "nim": number;
-  constructor(data?: MahasiswaInterface) {
+  "room": string;
+  constructor(data?: TbChatroomInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Mahasiswa`.
+   * i.e. `TbChatroom`.
    */
   public static getModelName() {
-    return "Mahasiswa";
+    return "TbChatroom";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of Mahasiswa for dynamic purposes.
+  * This method creates an instance of TbChatroom for dynamic purposes.
   **/
-  public static factory(data: MahasiswaInterface): Mahasiswa{
-    return new Mahasiswa(data);
+  public static factory(data: TbChatroomInterface): TbChatroom{
+    return new TbChatroom(data);
   }
   /**
   * @method getModelDefinition
@@ -37,16 +39,20 @@ export class Mahasiswa implements MahasiswaInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'Mahasiswa',
-      plural: 'Mahasiswas',
+      name: 'TbChatroom',
+      plural: 'TbChatrooms',
       properties: {
+        "created": {
+          name: 'created',
+          type: 'Date'
+        },
         "id": {
           name: 'id',
           type: 'number'
         },
-        "nim": {
-          name: 'nim',
-          type: 'number'
+        "room": {
+          name: 'room',
+          type: 'string'
         },
       },
       relations: {

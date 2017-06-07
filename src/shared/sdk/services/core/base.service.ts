@@ -79,11 +79,14 @@ export abstract class BaseLoopBackApi {
     } else {
       body = postBody;
     }
+    let filter: string = '';
     // Separate filter object from url params and add to search query
-    if (urlParams.filter) {
+    if (urlParams.filter && LoopBackConfig.isHeadersFilteringSet()) {
       headers.append('filter', JSON.stringify(urlParams.filter));
-      delete urlParams.filter;
+    } else {
+      filter = `?filter=${ encodeURI(JSON.stringify(urlParams.filter))}`;
     }
+    delete urlParams.filter;
     // Separate where object from url params and add to search query
     /**
     CODE BELOW WILL GENERATE THE FOLLOWING ISSUES:
@@ -99,7 +102,7 @@ export abstract class BaseLoopBackApi {
       new RequestOptions({
         headers : headers,
         method  : method,
-        url     : url,
+        url     : `${url}${filter}`,
         search  : Object.keys(urlParams).length > 0
                 ? this.searchParams.getURLSearchParams() : null,
         body    : body ? JSON.stringify(body) : undefined
@@ -203,7 +206,7 @@ export abstract class BaseLoopBackApi {
    * @description
    * Generic exists method
    */
-  public exists<T>(id: any): Observable<T[]> {
+  public exists<T>(id: any): Observable<T> {
     return this.request('GET', [
       LoopBackConfig.getPath(),
       LoopBackConfig.getApiVersion(),

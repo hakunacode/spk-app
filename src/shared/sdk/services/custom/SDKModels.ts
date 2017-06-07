@@ -1,9 +1,19 @@
 /* tslint:disable */
 import { Injectable } from '@angular/core';
-import { User } from '../../models/User';
-import { Mahasiswa } from '../../models/Mahasiswa';
+import { Auth } from '../../models/Auth';
+import { Accesstoken } from '../../models/Accesstoken';
+import { Rolemapping } from '../../models/Rolemapping';
+import { Container } from '../../models/Container';
 import { TmMahasiswa } from '../../models/TmMahasiswa';
-import { Calendar } from '../../models/Calendar';
+import { TmPegawai } from '../../models/TmPegawai';
+import { TmDosen } from '../../models/TmDosen';
+import { TbUser } from '../../models/TbUser';
+import { TbCalendar } from '../../models/TbCalendar';
+import { TbChatroom } from '../../models/TbChatroom';
+import { TbChatuserto } from '../../models/TbChatuserto';
+import { TbChatuser } from '../../models/TbChatuser';
+import { TbChatroomlist } from '../../models/TbChatroomlist';
+import { TbChatroomdetail } from '../../models/TbChatroomdetail';
 
 export interface Models { [name: string]: any }
 
@@ -11,10 +21,20 @@ export interface Models { [name: string]: any }
 export class SDKModels {
 
   private models: Models = {
-    User: User,
-    Mahasiswa: Mahasiswa,
+    Auth: Auth,
+    Accesstoken: Accesstoken,
+    Rolemapping: Rolemapping,
+    Container: Container,
     TmMahasiswa: TmMahasiswa,
-    Calendar: Calendar,
+    TmPegawai: TmPegawai,
+    TmDosen: TmDosen,
+    TbUser: TbUser,
+    TbCalendar: TbCalendar,
+    TbChatroom: TbChatroom,
+    TbChatuserto: TbChatuserto,
+    TbChatuser: TbChatuser,
+    TbChatroomlist: TbChatroomlist,
+    TbChatroomdetail: TbChatroomdetail,
     
   };
 

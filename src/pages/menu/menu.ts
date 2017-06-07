@@ -1,3 +1,4 @@
+import { SignInPage } from './../sign-in/sign-in';
 import { ChatPage } from './../chat/chat';
 import { MyCalendarPage } from './../my-calendar/my-calendar';
 import { JurnalPage } from './../jurnal/jurnal';
@@ -24,7 +25,7 @@ import { NavController, NavParams, Nav, LoadingController } from 'ionic-angular'
 })
 export class MenuPage {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = MyCalendarPage;
+  rootPage: any = SignInPage;
   pages: Array<{ title: string, component: any, icons: any, show: boolean }>;
   constructor(
     public navCtrl: NavController,

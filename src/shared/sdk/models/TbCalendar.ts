@@ -1,42 +1,42 @@
 /* tslint:disable */
 
 declare var Object: any;
-export interface CalendarInterface {
+export interface TbCalendarInterface {
   "subject"?: string;
   "description"?: string;
   "startDate"?: Date;
   "endDate"?: Date;
   "allDay"?: any;
   "id"?: number;
-  "nim": string;
+  "userid": number;
 }
 
-export class Calendar implements CalendarInterface {
+export class TbCalendar implements TbCalendarInterface {
   "subject": string;
   "description": string;
   "startDate": Date;
   "endDate": Date;
   "allDay": any;
   "id": number;
-  "nim": string;
-  constructor(data?: CalendarInterface) {
+  "userid": number;
+  constructor(data?: TbCalendarInterface) {
     Object.assign(this, data);
   }
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Calendar`.
+   * i.e. `TbCalendar`.
    */
   public static getModelName() {
-    return "Calendar";
+    return "TbCalendar";
   }
   /**
   * @method factory
   * @author Jonathan Casarrubias
   * @license MIT
-  * This method creates an instance of Calendar for dynamic purposes.
+  * This method creates an instance of TbCalendar for dynamic purposes.
   **/
-  public static factory(data: CalendarInterface): Calendar{
-    return new Calendar(data);
+  public static factory(data: TbCalendarInterface): TbCalendar{
+    return new TbCalendar(data);
   }
   /**
   * @method getModelDefinition
@@ -47,8 +47,8 @@ export class Calendar implements CalendarInterface {
   **/
   public static getModelDefinition() {
     return {
-      name: 'Calendar',
-      plural: 'Calendars',
+      name: 'TbCalendar',
+      plural: 'TbCalendars',
       properties: {
         "subject": {
           name: 'subject',
@@ -74,9 +74,9 @@ export class Calendar implements CalendarInterface {
           name: 'id',
           type: 'number'
         },
-        "nim": {
-          name: 'nim',
-          type: 'string'
+        "userid": {
+          name: 'userid',
+          type: 'number'
         },
       },
       relations: {
