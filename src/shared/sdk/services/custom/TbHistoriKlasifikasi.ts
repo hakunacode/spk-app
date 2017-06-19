@@ -10,14 +10,14 @@ import { JSONSearchParams } from '../core/search.params';
 import { ErrorHandler } from '../core/error.service';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Rx';
-import { Accesstoken } from '../../models/Accesstoken';
+import { TbHistoriKlasifikasi } from '../../models/TbHistoriKlasifikasi';
 
 
 /**
- * Api services for the `Accesstoken` model.
+ * Api services for the `TbHistoriKlasifikasi` model.
  */
 @Injectable()
-export class AccesstokenApi extends BaseLoopBackApi {
+export class TbHistoriKlasifikasiApi extends BaseLoopBackApi {
 
   constructor(
     @Inject(Http) protected http: Http,
@@ -42,13 +42,13 @@ export class AccesstokenApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Accesstoken` object.)
+   * This usually means the response is a `TbHistoriKlasifikasi` object.)
    * </em>
    */
   public patchOrCreate(data: any = {}): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Accesstokens";
+    "/TbHistoriKlasifikasis";
     let _routeParams: any = {};
     let _postBody: any = {
       data: data
@@ -61,7 +61,7 @@ export class AccesstokenApi extends BaseLoopBackApi {
   /**
    * Patch attributes for a model instance and persist it into the data source.
    *
-   * @param {any} id Accesstoken id
+   * @param {any} id TbHistoriKlasifikasi id
    *
    * @param {object} data Request data.
    *
@@ -73,13 +73,13 @@ export class AccesstokenApi extends BaseLoopBackApi {
    *
    * <em>
    * (The remote method definition does not provide any description.
-   * This usually means the response is a `Accesstoken` object.)
+   * This usually means the response is a `TbHistoriKlasifikasi` object.)
    * </em>
    */
   public patchAttributes(id: any, data: any = {}): Observable<any> {
     let _method: string = "PATCH";
     let _url: string = LoopBackConfig.getPath() + "/" + LoopBackConfig.getApiVersion() +
-    "/Accesstokens/:id";
+    "/TbHistoriKlasifikasis/:id";
     let _routeParams: any = {
       id: id
     };
@@ -93,9 +93,9 @@ export class AccesstokenApi extends BaseLoopBackApi {
 
   /**
    * The name of the model represented by this $resource,
-   * i.e. `Accesstoken`.
+   * i.e. `TbHistoriKlasifikasi`.
    */
   public getModelName() {
-    return "Accesstoken";
+    return "TbHistoriKlasifikasi";
   }
 }

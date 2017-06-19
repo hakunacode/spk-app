@@ -3,36 +3,20 @@
 declare var Object: any;
 export interface TmMahasiswaInterface {
   "nim": string;
-  "userid": number;
   "nama": string;
-  "email"?: string;
-  "pictures"?: string;
-  "jenisKelamin"?: string;
-  "alamat"?: string;
-  "ttl"?: string;
-  "jenjang"?: string;
-  "tanggalMasuk"?: Date;
-  "jurusan"?: string;
-  "createddate"?: Date;
+  "kategori1": number;
+  "kategori2": number;
+  "kategori3": number;
   "id"?: number;
-  "telephone"?: string;
 }
 
 export class TmMahasiswa implements TmMahasiswaInterface {
   "nim": string;
-  "userid": number;
   "nama": string;
-  "email": string;
-  "pictures": string;
-  "jenisKelamin": string;
-  "alamat": string;
-  "ttl": string;
-  "jenjang": string;
-  "tanggalMasuk": Date;
-  "jurusan": string;
-  "createddate": Date;
+  "kategori1": number;
+  "kategori2": number;
+  "kategori3": number;
   "id": number;
-  "telephone": string;
   constructor(data?: TmMahasiswaInterface) {
     Object.assign(this, data);
   }
@@ -68,57 +52,25 @@ export class TmMahasiswa implements TmMahasiswaInterface {
           name: 'nim',
           type: 'string'
         },
-        "userid": {
-          name: 'userid',
-          type: 'number'
-        },
         "nama": {
           name: 'nama',
           type: 'string'
         },
-        "email": {
-          name: 'email',
-          type: 'string'
+        "kategori1": {
+          name: 'kategori1',
+          type: 'number'
         },
-        "pictures": {
-          name: 'pictures',
-          type: 'string'
+        "kategori2": {
+          name: 'kategori2',
+          type: 'number'
         },
-        "jenisKelamin": {
-          name: 'jenisKelamin',
-          type: 'string'
-        },
-        "alamat": {
-          name: 'alamat',
-          type: 'string'
-        },
-        "ttl": {
-          name: 'ttl',
-          type: 'string'
-        },
-        "jenjang": {
-          name: 'jenjang',
-          type: 'string'
-        },
-        "tanggalMasuk": {
-          name: 'tanggalMasuk',
-          type: 'Date'
-        },
-        "jurusan": {
-          name: 'jurusan',
-          type: 'string'
-        },
-        "createddate": {
-          name: 'createddate',
-          type: 'Date'
+        "kategori3": {
+          name: 'kategori3',
+          type: 'number'
         },
         "id": {
           name: 'id',
           type: 'number'
-        },
-        "telephone": {
-          name: 'telephone',
-          type: 'string'
         },
       },
       relations: {

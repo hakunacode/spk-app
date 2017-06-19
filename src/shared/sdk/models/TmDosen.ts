@@ -3,32 +3,22 @@
 declare var Object: any;
 export interface TmDosenInterface {
   "id"?: number;
-  "alamat"?: string;
-  "createddate"?: Date;
-  "fungsional"?: string;
-  "jeniskelamin"?: string;
-  "kompetensi"?: string;
-  "kuota"?: string;
-  "nama"?: string;
-  "nidn"?: string;
-  "pendidikan"?: string;
-  "telephone"?: string;
-  "ttl"?: string;
+  "idFungsional": number;
+  "idKompetensi": number;
+  "idKuota": number;
+  "idPendidikan": number;
+  "nama": string;
+  "nidn": string;
 }
 
 export class TmDosen implements TmDosenInterface {
   "id": number;
-  "alamat": string;
-  "createddate": Date;
-  "fungsional": string;
-  "jeniskelamin": string;
-  "kompetensi": string;
-  "kuota": string;
+  "idFungsional": number;
+  "idKompetensi": number;
+  "idKuota": number;
+  "idPendidikan": number;
   "nama": string;
   "nidn": string;
-  "pendidikan": string;
-  "telephone": string;
-  "ttl": string;
   constructor(data?: TmDosenInterface) {
     Object.assign(this, data);
   }
@@ -64,29 +54,21 @@ export class TmDosen implements TmDosenInterface {
           name: 'id',
           type: 'number'
         },
-        "alamat": {
-          name: 'alamat',
-          type: 'string'
+        "idFungsional": {
+          name: 'idFungsional',
+          type: 'number'
         },
-        "createddate": {
-          name: 'createddate',
-          type: 'Date'
+        "idKompetensi": {
+          name: 'idKompetensi',
+          type: 'number'
         },
-        "fungsional": {
-          name: 'fungsional',
-          type: 'string'
+        "idKuota": {
+          name: 'idKuota',
+          type: 'number'
         },
-        "jeniskelamin": {
-          name: 'jeniskelamin',
-          type: 'string'
-        },
-        "kompetensi": {
-          name: 'kompetensi',
-          type: 'string'
-        },
-        "kuota": {
-          name: 'kuota',
-          type: 'string'
+        "idPendidikan": {
+          name: 'idPendidikan',
+          type: 'number'
         },
         "nama": {
           name: 'nama',
@@ -94,18 +76,6 @@ export class TmDosen implements TmDosenInterface {
         },
         "nidn": {
           name: 'nidn',
-          type: 'string'
-        },
-        "pendidikan": {
-          name: 'pendidikan',
-          type: 'string'
-        },
-        "telephone": {
-          name: 'telephone',
-          type: 'string'
-        },
-        "ttl": {
-          name: 'ttl',
           type: 'string'
         },
       },

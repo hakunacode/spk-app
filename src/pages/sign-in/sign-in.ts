@@ -1,3 +1,4 @@
+import { AuthApi } from './../../shared/sdk/services/custom/Auth';
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
@@ -20,6 +21,7 @@ export class SignInPage {
     public navParams: NavParams,
     public fb: FormBuilder,
     public loadingCtrl: LoadingController,
+    public authApi: AuthApi
   ) {
     this.myForm = fb.group({
       'username': ['', Validators.compose([Validators.required])],
@@ -43,7 +45,12 @@ export class SignInPage {
   }
 
   // action login 
-  goLogin(val){
-    console.log(val);
+  goLogin(val) {
+    this.authApi.doLogin({
+      username: val.username,
+      password: val.password
+    }).subscribe(value => {
+      console.log(value,'ok');
+    });
   }
 }

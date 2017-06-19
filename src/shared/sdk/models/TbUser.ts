@@ -6,7 +6,12 @@ export interface TbUserInterface {
   "password"?: string;
   "status"?: string;
   "createddate"?: Date;
+  "realm"?: string;
+  "email": string;
   "id"?: number;
+  "emailVerified"?: boolean;
+  "verificationToken"?: string;
+  accessTokens?: any[];
 }
 
 export class TbUser implements TbUserInterface {
@@ -14,7 +19,12 @@ export class TbUser implements TbUserInterface {
   "password": string;
   "status": string;
   "createddate": Date;
+  "realm": string;
+  "email": string;
   "id": number;
+  "emailVerified": boolean;
+  "verificationToken": string;
+  accessTokens: any[];
   constructor(data?: TbUserInterface) {
     Object.assign(this, data);
   }
@@ -62,12 +72,33 @@ export class TbUser implements TbUserInterface {
           name: 'createddate',
           type: 'Date'
         },
+        "realm": {
+          name: 'realm',
+          type: 'string'
+        },
+        "email": {
+          name: 'email',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'number'
         },
+        "emailVerified": {
+          name: 'emailVerified',
+          type: 'boolean'
+        },
+        "verificationToken": {
+          name: 'verificationToken',
+          type: 'string'
+        },
       },
       relations: {
+        accessTokens: {
+          name: 'accessTokens',
+          type: 'any[]',
+          model: ''
+        },
       }
     }
   }

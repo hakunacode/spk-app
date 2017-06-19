@@ -25,7 +25,7 @@ import { NavController, NavParams, Nav, LoadingController } from 'ionic-angular'
 })
 export class MenuPage {
   @ViewChild(Nav) nav: Nav;
-  rootPage: any = SignInPage;
+  rootPage: any = HomePage;
   pages: Array<{ title: string, component: any, icons: any, show: boolean }>;
   constructor(
     public navCtrl: NavController,
