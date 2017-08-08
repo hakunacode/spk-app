@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Settings</ion-title>
+    <ion-title>Pengaturan</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -21,15 +21,15 @@
   <ion-list>
     <ion-item-divider>
     </ion-item-divider>
-    <button ion-item>
+    <button ion-item (click)="goProfile()">
       <ion-icon name="person" item-left style="color: grey;"></ion-icon>
-      <ion-label>My Profile</ion-label>
+      <ion-label>Profil</ion-label>
     </button>
-    <button ion-item>
-      <ion-icon name="contact" item-left style="color: grey;"></ion-icon>
-      <ion-label>Tentang Kami</ion-label>
+    <button ion-item (click)="goChangePassword()">
+      <ion-icon name="lock" item-left style="color: grey;"></ion-icon>
+      <ion-label>Ubah Password</ion-label>
     </button>
-    <button ion-item>
+    <button ion-item (click)="goLogout();">
       <ion-icon name="log-out" item-left style="color: grey;"></ion-icon>
       <ion-label>Sign Out</ion-label>
     </button>

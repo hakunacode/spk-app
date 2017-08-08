@@ -1,14 +1,14 @@
-import { SignInPage } from './../sign-in/sign-in';
+import { TmMahasiswaApi } from './../../shared/sdk/services/custom/TmMahasiswa';
 import { ChatPage } from './../chat/chat';
 import { MyCalendarPage } from './../my-calendar/my-calendar';
-import { JurnalPage } from './../jurnal/jurnal';
 import { SettingsPage } from './../settings/settings';
 import { MahasiswaPage } from './../mahasiswa/mahasiswa';
 import { DosenPage } from './../dosen/dosen';
 import { HomePage } from './../home/home';
 // plugin
 import { Component, ViewChild } from '@angular/core';
-import { NavController, NavParams, Nav, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, Nav, LoadingController, Events } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 // page
 
@@ -27,12 +27,26 @@ export class MenuPage {
   @ViewChild(Nav) nav: Nav;
   rootPage: any = HomePage;
   pages: Array<{ title: string, component: any, icons: any, show: boolean }>;
+  setPictures: any;
+  setNama: any;
+  setNim: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public loadingCtrl: LoadingController
+    public loadingCtrl: LoadingController,
+    public storage: Storage,
+    public tmMahasiswaApi: TmMahasiswaApi,
+    public events: Events
   ) {
+    // ketika login
+    this.events.subscribe('user:login', (val) => {
+      storage.ready().then(() => {
+        this.loadMenu();
+        this.loadMhs();
+      });
+    });
     this.loadMenu();
+    this.loadMhs();
   }
 
   ionViewDidLoad() {
@@ -40,29 +54,53 @@ export class MenuPage {
   }
 
   loadMenu() {
-    // let loading = this.loadingCtrl.create({
-    //   content: "Loading..."
-    // });
-    // loading.present();
-
-    // loading.dismiss().then(
-    //   value => {
-    
-    this.pages = [
-      { title: 'Home', component: HomePage, icons: 'home', show: true },
-      { title: 'Dosen Pembimbing', component: DosenPage, icons: 'people', show: true },
-      { title: 'Mahasiswa', component: MahasiswaPage, icons: 'contacts', show: true },
-      { title: 'Jurnal', component: JurnalPage, icons: 'book', show: true },
-      { title: 'My Calendar', component: MyCalendarPage, icons: 'calendar', show: true },
-      { title: 'Chat', component: ChatPage, icons: 'chatbubbles', show: true },
-      { title: 'Pengaturan', component: SettingsPage, icons: 'settings', show: true }
-    ];
-    // });
-
+    console.log(12344321);
+    this.storage.get('roleid').then((roleid) => {
+      console.log(roleid, 111);
+      if (roleid == 1) {
+        this.pages = [
+          { title: 'Home', component: HomePage, icons: 'home', show: true },
+          { title: 'Dosen Pembimbing', component: DosenPage, icons: 'people', show: true },
+          { title: 'Mahasiswa', component: MahasiswaPage, icons: 'contacts', show: true },
+          { title: 'My Calendar', component: MyCalendarPage, icons: 'calendar', show: true },
+          { title: 'Chat', component: ChatPage, icons: 'chatbubbles', show: true },
+          { title: 'Pengaturan', component: SettingsPage, icons: 'settings', show: true }
+        ];
+      } else if (roleid == 2) {
+        this.pages = [
+          { title: 'Home', component: HomePage, icons: 'home', show: true },
+          { title: 'Dosen Pembimbing', component: DosenPage, icons: 'people', show: true },
+          { title: 'My Calendar', component: MyCalendarPage, icons: 'calendar', show: true },
+          { title: 'Chat', component: ChatPage, icons: 'chatbubbles', show: true },
+          { title: 'Pengaturan', component: SettingsPage, icons: 'settings', show: true }
+        ];
+      } else if (roleid == 3) {
+        this.pages = [
+          { title: 'Home', component: HomePage, icons: 'home', show: true },
+          { title: 'Mahasiswa', component: MahasiswaPage, icons: 'contacts', show: true },
+          { title: 'My Calendar', component: MyCalendarPage, icons: 'calendar', show: true },
+          { title: 'Chat', component: ChatPage, icons: 'chatbubbles', show: true },
+          { title: 'Pengaturan', component: SettingsPage, icons: 'settings', show: true }
+        ];
+      }
+    });
   }
   // gotopage 
   openPage(page) {
     this.nav.setRoot(page.component);
   }
 
+  loadMhs() {
+    this.storage.get('stuserid').then((stuserid) => {
+      this.tmMahasiswaApi.find({
+        where: { userid: stuserid }
+      }).subscribe(val => {
+        if (val.length != 0) {
+          this.setPictures = val[0]['pictures'];
+          this.setNama = val[0]['nama'];
+          this.setNim = stuserid;
+        }
+      });
+    });
+  }
 }

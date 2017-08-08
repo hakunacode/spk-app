@@ -19,14 +19,14 @@
 <ion-content padding>
   <ion-list>
     <ion-item-divider>
-      List Mahasiswa
+      Daftar Mahasiswa
     </ion-item-divider>
     <button ion-item *ngFor="let item of items">
       <ion-avatar item-left>
-        <img src="assets/img/me.jpg" onerror="this.src='assets/img/no-photo.gif'" />
+        <img src="" onerror="this.src='assets/img/no-photo.gif'" />
       </ion-avatar>
-      <div (click)="detailFeeds(data)">
-        <h2 style="font-size: 0.9em;">{{item.nama}}</h2>
+      <div (click)="detailMhs(item.nim)">
+        <h2 style="font-size: 0.9em;">{{item.namamhs}}</h2>
         <p>{{item.nim}}</p>
       </div>
     </button>

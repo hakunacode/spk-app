@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title *ngIf="flag != 1">Add Event</ion-title>
+    <ion-title *ngIf="flag == 1">Detail Event</ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="submit()" [hidden]="isDetailLocal" [disabled]="!eventData.title">
+        Done
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!--<div style="background-color: lightgray;"><br></div>-->
+  <ion-list>
+    <ion-item>
+      <ion-label stacked>Title</ion-label>
+      <ion-input type="text" [(ngModel)]="eventData.title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Description</ion-label>
+      <ion-textarea [(ngModel)]="eventData.notes"></ion-textarea>
+    </ion-item>
+    <ion-item>
+      <ion-label >All day</ion-label>
+      <ion-toggle [(ngModel)]="eventData.allDay" (change)="eventData.allDay != eventData.allDay"></ion-toggle>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Start Date</ion-label>
+      <ion-input type="date" [(ngModel)]="eventData.startDate"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!eventData.allDay">
+      <ion-label stacked>Start Time</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="eventData.startTime" [disabled]="eventData.allDay==true"></ion-datetime>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>End Date</ion-label>
+      <ion-input type="date" [(ngModel)]="eventData.endDate"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="!eventData.allDay">
+      <ion-label stacked>End Time</ion-label>
+      <ion-datetime displayFormat="HH:mm" pickerFormat="HH:mm" [(ngModel)]="eventData.endTime" [disabled]="eventData.allDay == true"></ion-datetime>
+    </ion-item>
+  </ion-list>
+  <!--
+  <div padding>
+    <button ion-button block (click)="submit()" [hidden]="isDetailLocal" [disabled]="!eventData.eventName">Submit</button>
+  </div>-->
+</ion-content>

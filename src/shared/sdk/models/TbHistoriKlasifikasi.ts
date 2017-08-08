@@ -2,19 +2,17 @@
 
 declare var Object: any;
 export interface TbHistoriKlasifikasiInterface {
-  "idPendidikan": number;
-  "idFungsional": number;
   "idMahasiswa": number;
   "idDosen": number;
+  "bobot": number;
   "hasil": number;
   "id"?: number;
 }
 
 export class TbHistoriKlasifikasi implements TbHistoriKlasifikasiInterface {
-  "idPendidikan": number;
-  "idFungsional": number;
   "idMahasiswa": number;
   "idDosen": number;
+  "bobot": number;
   "hasil": number;
   "id": number;
   constructor(data?: TbHistoriKlasifikasiInterface) {
@@ -48,20 +46,16 @@ export class TbHistoriKlasifikasi implements TbHistoriKlasifikasiInterface {
       name: 'TbHistoriKlasifikasi',
       plural: 'TbHistoriKlasifikasis',
       properties: {
-        "idPendidikan": {
-          name: 'idPendidikan',
-          type: 'number'
-        },
-        "idFungsional": {
-          name: 'idFungsional',
-          type: 'number'
-        },
         "idMahasiswa": {
           name: 'idMahasiswa',
           type: 'number'
         },
         "idDosen": {
           name: 'idDosen',
+          type: 'number'
+        },
+        "bobot": {
+          name: 'bobot',
           type: 'number'
         },
         "hasil": {

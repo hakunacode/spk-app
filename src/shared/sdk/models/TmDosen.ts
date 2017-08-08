@@ -2,23 +2,37 @@
 
 declare var Object: any;
 export interface TmDosenInterface {
+  "telephone"?: string;
+  "ttl"?: string;
+  "pictures"?: string;
+  "created"?: Date;
+  "jeniskelamin"?: string;
+  "alamat"?: string;
   "id"?: number;
   "idFungsional": number;
+  "userid"?: number;
   "idKompetensi": number;
   "idKuota": number;
   "idPendidikan": number;
-  "nama": string;
   "nidn": string;
+  "nama": string;
 }
 
 export class TmDosen implements TmDosenInterface {
+  "telephone": string;
+  "ttl": string;
+  "pictures": string;
+  "created": Date;
+  "jeniskelamin": string;
+  "alamat": string;
   "id": number;
   "idFungsional": number;
+  "userid": number;
   "idKompetensi": number;
   "idKuota": number;
   "idPendidikan": number;
-  "nama": string;
   "nidn": string;
+  "nama": string;
   constructor(data?: TmDosenInterface) {
     Object.assign(this, data);
   }
@@ -50,12 +64,40 @@ export class TmDosen implements TmDosenInterface {
       name: 'TmDosen',
       plural: 'TmDosens',
       properties: {
+        "telephone": {
+          name: 'telephone',
+          type: 'string'
+        },
+        "ttl": {
+          name: 'ttl',
+          type: 'string'
+        },
+        "pictures": {
+          name: 'pictures',
+          type: 'string'
+        },
+        "created": {
+          name: 'created',
+          type: 'Date'
+        },
+        "jeniskelamin": {
+          name: 'jeniskelamin',
+          type: 'string'
+        },
+        "alamat": {
+          name: 'alamat',
+          type: 'string'
+        },
         "id": {
           name: 'id',
           type: 'number'
         },
         "idFungsional": {
           name: 'idFungsional',
+          type: 'number'
+        },
+        "userid": {
+          name: 'userid',
           type: 'number'
         },
         "idKompetensi": {
@@ -70,12 +112,12 @@ export class TmDosen implements TmDosenInterface {
           name: 'idPendidikan',
           type: 'number'
         },
-        "nama": {
-          name: 'nama',
-          type: 'string'
-        },
         "nidn": {
           name: 'nidn',
+          type: 'string'
+        },
+        "nama": {
+          name: 'nama',
           type: 'string'
         },
       },

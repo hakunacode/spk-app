@@ -2,28 +2,28 @@
 
 declare var Object: any;
 export interface TbUserInterface {
-  "username"?: string;
-  "password"?: string;
+  "username": string;
   "status"?: string;
+  "isuser"?: string;
   "createddate"?: Date;
   "realm"?: string;
-  "email": string;
+  "email"?: string;
   "id"?: number;
   "emailVerified"?: boolean;
-  "verificationToken"?: string;
+  "password"?: string;
   accessTokens?: any[];
 }
 
 export class TbUser implements TbUserInterface {
   "username": string;
-  "password": string;
   "status": string;
+  "isuser": string;
   "createddate": Date;
   "realm": string;
   "email": string;
   "id": number;
   "emailVerified": boolean;
-  "verificationToken": string;
+  "password": string;
   accessTokens: any[];
   constructor(data?: TbUserInterface) {
     Object.assign(this, data);
@@ -60,12 +60,12 @@ export class TbUser implements TbUserInterface {
           name: 'username',
           type: 'string'
         },
-        "password": {
-          name: 'password',
-          type: 'string'
-        },
         "status": {
           name: 'status',
+          type: 'string'
+        },
+        "isuser": {
+          name: 'isuser',
           type: 'string'
         },
         "createddate": {
@@ -88,8 +88,8 @@ export class TbUser implements TbUserInterface {
           name: 'emailVerified',
           type: 'boolean'
         },
-        "verificationToken": {
-          name: 'verificationToken',
+        "password": {
+          name: 'password',
           type: 'string'
         },
       },

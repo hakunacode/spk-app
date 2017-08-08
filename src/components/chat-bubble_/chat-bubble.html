@@ -1,0 +1,10 @@
+<div class="chatBubble">
+  <img class="profile-pic left" *ngIf="! msg.isMe" src="{{ loopbackPath + msg.image }}/download/{{msg.imageTo}}" onerror="this.src='assets/img/no-photo.png'" />
+  <div class="message-detail {{msg.isMe === true ? 'right' : 'left'}}">
+    <span>{{msg.time | date:'shortTime' }}</span>
+  </div>
+  <img class="profile-pic right" *ngIf="msg.isMe" src="{{ loopbackPath + msg.image }}/download/{{msg.imageMe}}" onerror="this.src='assets/img/no-photo.png'" />
+  <div class="chat-bubble {{msg.isMe === true ? 'right' : 'left'}}">
+    <div class="message">{{ msg.content }}</div>
+  </div>
+</div>

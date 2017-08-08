@@ -10,39 +10,35 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Chat</ion-title>
+    <ion-title>Percakapan</ion-title>
+    <ion-buttons end (click)="search()">
+      <button ion-button icon-only>
+        <ion-icon name="create"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list>
-    <ion-item-divider>
-    </ion-item-divider>
-    <button ion-item>
-      <ion-avatar item-left>
-        <img src="assets/img/me.jpg" onerror="this.src='assets/img/no-photo.gif'" />
-      </ion-avatar>
-      <div (click)="detailFeeds(data)">
-        <h2 style="font-size: 0.9em;">Jeje Abdul Rahman</h2>
-      </div>
-    </button>
-    <button ion-item>
-      <ion-avatar item-left>
-        <img src="assets/img/me.jpg" onerror="this.src='assets/img/no-photo.gif'" />
-      </ion-avatar>
-      <div (click)="detailFeeds(data)">
-        <h2 style="font-size: 0.9em;">Jeje Abdul Rahman</h2>
-      </div>
-    </button>
-    <button ion-item>
-      <ion-avatar item-left>
-        <img src="assets/img/me.jpg" onerror="this.src='assets/img/no-photo.gif'" />
-      </ion-avatar>
-      <div (click)="detailFeeds(data)">
-        <h2 style="font-size: 0.9em;">Jeje Abdul Rahman</h2>
-      </div>
-    </button>
-  </ion-list>
+  <div [hidden]="listOne">
+    <ion-list>
+      <ion-item *ngFor="let chats of listChat" (click)="roomChat(chats)">
+        <ion-avatar item-left>
+          <img src="assets/img/no-photo.png">
+        </ion-avatar>
+        <div [hidden]="posFrom">
+          <h2>{{chats.fromname}}</h2>
+        </div>
+        <div [hidden]="posTo">
+          <h2>{{chats.toname}}</h2>
+        </div>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div [hidden]="listTwo">
+    <p text-center class="centerChat"> No Messenger for you click icon ' <ion-icon name="create"></ion-icon> ' to start chat with others one </p>
+  </div>
 </ion-content>

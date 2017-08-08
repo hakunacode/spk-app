@@ -3,19 +3,35 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Beranda</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list>
-
-    <img src="assets/img/ft-umj.jpg" onerror="this.src='assets/img/no-image-community.png'" width="450px;" height="170px;"/>
-    <ion-item>
+<ion-content class="card-background-page">
+  <ion-list text-center>
+    <br>
+    <img src="assets/img/UMJ.png" onerror="this.src='assets/img/no-image.jpg'" width="100px;" height="95px;" />
+    <ion-item style="text-align:center">
       Universitas Muhammadiyah Jakarta
     </ion-item>
   </ion-list>
-  <button (click)="generate();">generate mahasiswa</button>
+  <ion-card>
+    <img src="assets/img/1.jpg" />
+    <div class="card-title">Mahasiswa</div>
+    <div class="card-subtitle">{{jmlMhs}} Orang</div>
+  </ion-card>
+
+  <ion-card>
+    <img src="assets/img/2.jpg" />
+    <div class="card-title">Dosen Pembimbing</div>
+    <div class="card-subtitle">{{jmlDsn}} Orang</div>
+  </ion-card>
+
+   <button (click)="generate(2016);">generate mahasiswa 2016</button>
+    <button (click)="generate(2017);">generate mahasiswa 2017</button>
 
   <button (click)="generate2();">generate dosen</button>
+  <!-- <button (click)="generate3();">generate dosen</button>  -->
+  <button (click)="processBayes()">proses bayes</button>
+  <br>
 </ion-content>

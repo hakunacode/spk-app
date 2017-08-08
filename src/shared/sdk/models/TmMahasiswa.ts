@@ -2,21 +2,39 @@
 
 declare var Object: any;
 export interface TmMahasiswaInterface {
+  "userid"?: number;
   "nim": string;
   "nama": string;
+  "judulskripsi"?: string;
+  "pictures"?: string;
   "kategori1": number;
   "kategori2": number;
   "kategori3": number;
   "id"?: number;
+  "jeniskelamin"?: string;
+  "tahunmasuk"?: string;
+  "telphone"?: string;
+  "ttl"?: string;
+  "kelas"?: string;
+  "proses"?: string;
 }
 
 export class TmMahasiswa implements TmMahasiswaInterface {
+  "userid": number;
   "nim": string;
   "nama": string;
+  "judulskripsi": string;
+  "pictures": string;
   "kategori1": number;
   "kategori2": number;
   "kategori3": number;
   "id": number;
+  "jeniskelamin": string;
+  "tahunmasuk": string;
+  "telphone": string;
+  "ttl": string;
+  "kelas": string;
+  "proses": string;
   constructor(data?: TmMahasiswaInterface) {
     Object.assign(this, data);
   }
@@ -48,12 +66,24 @@ export class TmMahasiswa implements TmMahasiswaInterface {
       name: 'TmMahasiswa',
       plural: 'TmMahasiswas',
       properties: {
+        "userid": {
+          name: 'userid',
+          type: 'number'
+        },
         "nim": {
           name: 'nim',
           type: 'string'
         },
         "nama": {
           name: 'nama',
+          type: 'string'
+        },
+        "judulskripsi": {
+          name: 'judulskripsi',
+          type: 'string'
+        },
+        "pictures": {
+          name: 'pictures',
           type: 'string'
         },
         "kategori1": {
@@ -71,6 +101,30 @@ export class TmMahasiswa implements TmMahasiswaInterface {
         "id": {
           name: 'id',
           type: 'number'
+        },
+        "jeniskelamin": {
+          name: 'jeniskelamin',
+          type: 'string'
+        },
+        "tahunmasuk": {
+          name: 'tahunmasuk',
+          type: 'string'
+        },
+        "telphone": {
+          name: 'telphone',
+          type: 'string'
+        },
+        "ttl": {
+          name: 'ttl',
+          type: 'string'
+        },
+        "kelas": {
+          name: 'kelas',
+          type: 'string'
+        },
+        "proses": {
+          name: 'proses',
+          type: 'string'
         },
       },
       relations: {

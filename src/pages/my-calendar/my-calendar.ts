@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, NavParams, Platform, LoadingController, ActionSheetController, ToastController } from 'ionic-angular';
 import { Calendar } from 'ionic-native';
 import { EventInterface } from './event/event';
 // import * as moment from 'moment';
+import { TbCalendarApi } from './../../shared/sdk/services/custom/TbCalendar';
+import { FormEventPage } from './form-event/form-event';
+import * as moment from 'moment';
 /**
  * Generated class for the MyCalendarPage page.
  *
@@ -30,7 +33,11 @@ export class MyCalendarPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public platform: Platform
+    public platform: Platform,
+    private loadingCtrl: LoadingController,
+    private tbCalendarApi: TbCalendarApi,
+    private toastCtrl: ToastController,
+    private actionsheetCtrl: ActionSheetController,
   ) {
   }
 
@@ -67,7 +74,45 @@ export class MyCalendarPage {
   }
 
   getEventPublic(): void {
+    let loader = this.loadingCtrl.create();
+    loader.present();
+    this.tbCalendarApi.find({
+      where: {
+        userid: 1,
+        startDate: { gte: this.startDate },
+        endDate: { lte: this.endDate }
+      }
+    }).subscribe(results => {
+      console.log(results, 'jj');
+      loader.dismiss().then(
+        value => {
+          for (let result of results) {
 
+            let startDate = moment(result['startDate']);
+            let endDate = moment(result['endDate']);
+            if (result['allDay'].data[0]) {
+              startDate = moment.utc(moment(result['startDate']).format("YYYY-MM-DD HH:mm"));
+              endDate = moment.utc(moment(result['endDate']).format("YYYY-MM-DD HH:mm"));
+            }
+
+            this.data.push({
+              id: result['id'],
+              title: result['subject'],
+              notes: result['description'],
+              startTime: startDate.toDate(),
+              endTime: endDate.toDate(),
+              allDay: (result['allDay'].data[0] == 1) ? true : false,
+              server: true
+            });
+          }
+
+          // Show event
+          this.eventSource = this.data;
+        });
+    }, (error) => {
+      console.log(error);
+      loader.dismiss();
+    });
   }
 
   /**
@@ -183,4 +228,85 @@ export class MyCalendarPage {
     this.getEventPublic();
     this.calendarCheckPermission();
   }
+
+  eventPopover(popEvent): void {
+    this.navCtrl.push(FormEventPage, { date: this.selectedTime, flag: 0 });
+  }
+
+  onEventSelected(event): void {
+    // Check if on shared calendar, so disable action sheet
+    if (this.navParams.get('dataShare')) {
+      return;
+    }
+
+    let actionButtons = [
+      {
+        text: 'Detail',
+        role: 'destructive',
+        icon: !this.platform.is('ios') ? 'information-circle' : null,
+        handler: () => {
+          this.detailEvent(event);
+        }
+      },
+      {},
+      {
+        text: 'Cancel',
+        role: 'cancel', // will always sort to be on the bottom
+        icon: !this.platform.is('ios') ? 'close' : null,
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+    ];
+
+
+    /** Check if calendar from local or server,
+     *  if from server, method delete is visible
+     */
+    if (event.server) {
+      actionButtons[1] = {
+        text: 'Delete',
+        icon: !this.platform.is('ios') ? 'trash' : null,
+        handler: () => {
+          this.deleteEvent(event);
+        }
+      };
+    } else {
+      actionButtons.splice(1, 1);
+    }
+
+    let actionSheet = this.actionsheetCtrl.create({
+      title: 'Action',
+      buttons: actionButtons
+    });
+    actionSheet.present();
+  };
+
+  detailEvent(event): void {
+    this.navCtrl.push(FormEventPage, {
+      event: event, flag: 1
+    });
+  }
+
+  deleteEvent(event): void {
+
+    this.tbCalendarApi.deleteEvent({ id: event.id })
+      .subscribe((result) => {
+        let toast = this.toastCtrl.create({
+          message: 'Event was deleted successfully',
+          duration: 3000,
+          position: 'bottom'
+        });
+
+        toast.onDidDismiss(() => {
+          console.log('Dismissed toast');
+        });
+
+        toast.present();
+        this.data = [];
+        this.getEventPublic();
+        this.calendarCheckPermission();
+      }, error => console.log(error));
+  }
+
 }

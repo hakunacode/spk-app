@@ -3,13 +3,13 @@
     <div align="center" (click)="goToProfile()" menuClose class="gradien-menu">
       <br>
       <br>
-      <img style="border-radius:60%;width: 6em; height: 6em;margin-left:15px;" src="assets/img/me.jpg" onError="this.src='assets/img/no-photo.gif'">
+      <img style="border-radius:60%;width: 6em; height: 6em;margin-left:15px;" src="http://localhost:3000/api/containers/{{setNim}}/download/{{setPictures}}" onError="this.src='assets/img/no-photo.gif'">
       <br>
       <br>
       <div style="font-size:1.5em;margin-bottom:10px;margin-left:15px;">
-        Superadmin
+        {{setNama}}
         <!--<div style="font-size:0.6em;color:#E1E1E1;">Point: {{point}} pts</div>-->
-        <div style="font-size:0.6em;">2015477024</div>
+        <div style="font-size:0.6em;">{{setNim}}</div>
       </div>
       <br>
     </div>
@@ -17,8 +17,8 @@
   <ion-content>
     <ion-list>
       <button  menuClose detail-none ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        <ion-icon name="{{p.icons}}" item-left style="color: grey;"></ion-icon>
-        <ion-label>{{p.title}}</ion-label>
+        <ion-icon name="{{p.icons}}" item-left style="color:green"></ion-icon>
+        <ion-label style="color:grey">{{p.title}}</ion-label>
       </button >
     </ion-list>
   </ion-content>

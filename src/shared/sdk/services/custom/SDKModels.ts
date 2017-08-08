@@ -11,10 +11,18 @@ import { TbChatuserto } from '../../models/TbChatuserto';
 import { TbChatuser } from '../../models/TbChatuser';
 import { TbChatroomlist } from '../../models/TbChatroomlist';
 import { TbChatroomdetail } from '../../models/TbChatroomdetail';
-import { TmMahasiswa } from '../../models/TmMahasiswa';
-import { TmDosen } from '../../models/TmDosen';
 import { TbDetailKomptensiDosen } from '../../models/TbDetailKomptensiDosen';
+import { TmFungsionalDosen } from '../../models/TmFungsionalDosen';
+import { TmKuota } from '../../models/TmKuota';
+import { TmKompetensiDosen } from '../../models/TmKompetensiDosen';
+import { TmPendidikanDosen } from '../../models/TmPendidikanDosen';
+import { TbKriteria } from '../../models/TbKriteria';
 import { TbHistoriKlasifikasi } from '../../models/TbHistoriKlasifikasi';
+import { TmDosen } from '../../models/TmDosen';
+import { TmMahasiswa } from '../../models/TmMahasiswa';
+import { Tmviewhistorykriteria } from '../../models/Tmviewhistorykriteria';
+import { Chatroom } from '../../models/Chatroom';
+import { Chatisi } from '../../models/Chatisi';
 
 export interface Models { [name: string]: any }
 
@@ -33,10 +41,18 @@ export class SDKModels {
     TbChatuser: TbChatuser,
     TbChatroomlist: TbChatroomlist,
     TbChatroomdetail: TbChatroomdetail,
-    TmMahasiswa: TmMahasiswa,
-    TmDosen: TmDosen,
     TbDetailKomptensiDosen: TbDetailKomptensiDosen,
+    TmFungsionalDosen: TmFungsionalDosen,
+    TmKuota: TmKuota,
+    TmKompetensiDosen: TmKompetensiDosen,
+    TmPendidikanDosen: TmPendidikanDosen,
+    TbKriteria: TbKriteria,
     TbHistoriKlasifikasi: TbHistoriKlasifikasi,
+    TmDosen: TmDosen,
+    TmMahasiswa: TmMahasiswa,
+    Tmviewhistorykriteria: Tmviewhistorykriteria,
+    Chatroom: Chatroom,
+    Chatisi: Chatisi,
     
   };
 

@@ -19,23 +19,17 @@
 <ion-content no-padding>
   <ion-list>
     <ion-item-divider>
-      List Dosen
+      Daftar Dosen
     </ion-item-divider>
-    <ion-col col-6 col-sm>
+    <ion-col col-6 col-sm *ngFor="let item of items; let idx =  index">
       <ion-card>
-        <ion-card-content style="text-align:center">
+        <ion-card-content>
           <img src="assets/img/no-photo.gif" onerror="this.src='assets/img/no-image-community.png'" style="border-radius:60%;width: 8em; height: 8em;margin-left:15px;"
           />
-          <ion-label>Drs. abc</ion-label>
-        </ion-card-content>
-      </ion-card>
-    </ion-col>
-    <ion-col col-6 col-sm>
-      <ion-card>
-        <ion-card-content style="text-align:center">
-          <img src="assets/img/no-photo.gif" onerror="this.src='assets/img/no-image-community.png'" style="border-radius:60%;width: 8em; height: 8em;margin-left:15px;"
-          />
-          <ion-label>Drs. abc</ion-label>
+          <ion-label *ngIf="setRoleid == 2"> Pembimbing {{idx+1}}</ion-label>
+          <p>NIDN : {{item?.nidn}}</p>
+          <p>Nama : {{item?.namadsn}}</p>
+          <p>Telephone : {{item?.telephone}}</p>
         </ion-card-content>
       </ion-card>
     </ion-col>
