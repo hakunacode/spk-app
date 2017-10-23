@@ -62,7 +62,7 @@ export class MyProfilePage {
     }).subscribe(item => {
       console.log(item, 11111111);
       if (item.length) {
-        this.setPictures = 'http://localhost:3000/api/containers/' + stuserid + '/download/' + item[0]['pictures'];
+        this.setPictures = 'http://172.20.10.2:3000/api/containers/temp_' + stuserid + '/download/' + item[0]['pictures'];
         this.setNim = item[0]['nim'];
         this.setNama = item[0]['nama'];
         this.setTelephone = item[0]['telphone'];
@@ -76,7 +76,7 @@ export class MyProfilePage {
         userid: stuserid
       }
     }).subscribe(val => {
-      this.setPictures = 'http://localhost:3000/api/containers/' + stuserid + '/download/' + val[0]['pictures'];
+      this.setPictures = 'http://172.20.10.2:3000/api/containers/temp_' + stuserid + '/download/' + val[0]['pictures'];
       this.setNim = val[0]['nidn'];
       this.setNama = val[0]['nama'];
       this.setTelephone = val[0]['telphone'];
@@ -209,15 +209,15 @@ export class MyProfilePage {
 
       console.log(options, 'this is options');
 
-      fileTransfer.upload(imageData, 'http://localhost:3000/api/containers/' + this.stuserid + '/upload', options)
+      fileTransfer.upload(imageData, 'http://172.20.10.2:3000/api/containers/temp_' + this.stuserid + '/upload', options)
         .then((data) => {
 
-          this.picture = 'http://localhost:3000/api/containers/' + this.stuserid + '/download/' + JSON.parse(data['response']).result.files.file[0].name;
+          this.picture = 'http://172.20.10.2:3000/api/containers/temp_' + this.stuserid + '/download/' + JSON.parse(data['response']).result.files.file[0].name;
 
           this.namePicture = JSON.parse(data['response']).result.files.file[0].name;
           loading.dismiss().then(
             value => {
-              this.setPictures = 'http://localhost:3000/api/containers/' + this.stuserid + '/download/' + this.namePicture
+              this.setPictures = 'http://172.20.10.2:3000/api/containers/temp_' + this.stuserid + '/download/' + this.namePicture
             }
           );
 

@@ -1,3 +1,4 @@
+import { TmDosenApi } from './../../shared/sdk/services/custom/TmDosen';
 import { TmMahasiswaApi } from './../../shared/sdk/services/custom/TmMahasiswa';
 import { ChatPage } from './../chat/chat';
 import { MyCalendarPage } from './../my-calendar/my-calendar';
@@ -30,23 +31,39 @@ export class MenuPage {
   setPictures: any;
   setNama: any;
   setNim: any;
+  setUserid:any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public loadingCtrl: LoadingController,
     public storage: Storage,
     public tmMahasiswaApi: TmMahasiswaApi,
-    public events: Events
+    public events: Events,
+    public tmDosenApi: TmDosenApi
   ) {
     // ketika login
     this.events.subscribe('user:login', (val) => {
       storage.ready().then(() => {
         this.loadMenu();
-        this.loadMhs();
+        this.storage.get('roleid').then((roleid) => {
+          if (roleid == 2) {
+            this.loadMhs();
+          } else {
+            this.loadDSN();
+          }
+        })
       });
     });
     this.loadMenu();
-    this.loadMhs();
+    storage.ready().then(() => {
+      this.storage.get('roleid').then((roleid) => {
+        if (roleid == 2) {
+          this.loadMhs();
+        } else {
+          this.loadDSN();
+        }
+      })
+    });
   }
 
   ionViewDidLoad() {
@@ -98,7 +115,25 @@ export class MenuPage {
         if (val.length != 0) {
           this.setPictures = val[0]['pictures'];
           this.setNama = val[0]['nama'];
-          this.setNim = stuserid;
+          this.setNim = val[0]['nim'];
+          this.setUserid = stuserid;
+        }
+      });
+    });
+  }
+
+  loadDSN() {
+    this.storage.get('stuserid').then((stuserid) => {
+      this.tmDosenApi.find({
+        where: {
+          userid: stuserid
+        }
+      }).subscribe(val => {
+        if (val.length != 0) {
+          this.setPictures = val[0]['pictures'];
+          this.setNama = val[0]['nama'];
+          this.setNim = val[0]['nidn'];
+          this.setUserid = stuserid;
         }
       });
     });

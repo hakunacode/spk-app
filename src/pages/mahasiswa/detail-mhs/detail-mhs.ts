@@ -34,6 +34,8 @@ export class DetailMhsPage {
       where: { nim: this.detailNimMhs }
     }).subscribe(req => {
       this.items = req;
+      console.log(this.items);
+      
     });
   }
 }

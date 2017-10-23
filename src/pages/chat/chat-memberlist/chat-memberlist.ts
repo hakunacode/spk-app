@@ -1,3 +1,4 @@
+import { TmviewhistorykriteriaApi } from './../../../shared/sdk/services/custom/Tmviewhistorykriteria';
 import { ChatDetailsPage } from './../chat-details/chat-details';
 import { TmDosenApi } from './../../../shared/sdk/services/custom/TmDosen';
 import { TmMahasiswaApi } from './../../../shared/sdk/services/custom/TmMahasiswa';
@@ -18,7 +19,7 @@ import { Storage } from '@ionic/storage';
 export class ChatMemberlistPage {
   items: any = [];
   start_member: number = 0;
-  limit_member: number = 6;
+  limit_member: number = 10;
   stop_member: boolean = false;
   textSearchMember: any = '';
   constructor(
@@ -28,6 +29,7 @@ export class ChatMemberlistPage {
     public tmDosenApi: TmDosenApi,
     public tmMahasiswaApi: TmMahasiswaApi,
     public viewCtrl: ViewController,
+    public tmviewhistorykriteriaApi: TmviewhistorykriteriaApi
   ) {
     this.getListMember('', '');
   }
@@ -38,8 +40,50 @@ export class ChatMemberlistPage {
         console.log(roleid, 'roleidroleid');
 
         if (roleid == 2) {
-          
+
           if (val !== '') {
+            // console.log(124444);
+
+            // this.tmMahasiswaApi.find({
+            //   where: { userid: stuserid }
+            // }).subscribe(valq => {
+            //   if (val.length) {
+            //     this.tmviewhistorykriteriaApi.find({
+            //       where: {
+            //         and: [{ nim: valq[0]['nim'] }, { hasil: 1 },
+            //         {
+            //           or: [
+            //             { namadsn: { like: '%' + val + '%' } },
+            //             { nidn: { like: '%' + val + '%' } }
+            //           ]
+            //         }]
+            //       }, order: "namadsn ASC",
+            //       limit: this.limit_member,
+            //       skip: this.start_member
+            //     }).subscribe(value => {
+            //       console.log(value, 1111111);
+
+            //       if (value.length !== 0) {
+            //         for (let item of value) {
+            //           this.items.push({
+            //             nama: item['namadsn'],
+            //             pictures: item['picturesdsn'],
+            //             userid: item['useriddsn']
+            //           });
+            //         }
+            //       } else {
+            //         this.stop_member = true;
+            //       }
+
+            //       if (type !== '') {
+            //         type.complete();
+            //       }
+            //     }, error => {
+            //       console.log('error tidak ada data');
+            //     });
+            //   }
+            // });
+
             this.tmDosenApi.find({
               where: {
                 and: [
@@ -66,7 +110,43 @@ export class ChatMemberlistPage {
             }, error => {
               console.log('error tidak ada data');
             });
+
+
           } else {
+            // this.tmMahasiswaApi.find({
+            //   where: { userid: stuserid }
+            // }).subscribe(val => {
+            //   if (val.length) {
+            //     this.tmviewhistorykriteriaApi.find({
+            //       where: {
+            //         and:
+            //         [{ nim: val[0]['nim'] }, { hasil: 1 }]
+            //       }, order: "namadsn ASC",
+            //       limit: this.limit_member,
+            //       skip: this.start_member
+            //     }).subscribe(value => {
+            //       if (value.length !== 0) {
+            //         for (let item of value) {
+            //           this.items.push({
+            //             nama: item['namadsn'],
+            //             pictures: item['picturesdsn'],
+            //             userid: item['useriddsn']
+            //           });
+            //         }
+            //       } else {
+            //         this.stop_member = true;
+            //       }
+
+            //       if (type !== '') {
+            //         type.complete();
+            //       }
+            //     }, error => {
+            //       console.log('error tidak ada data');
+            //     });
+            //   }
+            // });
+
+
             this.tmDosenApi.find({
               order: "nama ASC",
               limit: this.limit_member,
@@ -92,12 +172,12 @@ export class ChatMemberlistPage {
             this.tmMahasiswaApi.find({
               where: {
                 and: [
-                {
-                  or: [
-                    { nama: { like: '%' + val + '%' } },
-                    { nidn: { like: '%' + val + '%' } }
-                  ]
-                }]
+                  {
+                    or: [
+                      { nama: { like: '%' + val + '%' } },
+                      { nidn: { like: '%' + val + '%' } }
+                    ]
+                  }]
               }, order: "nama ASC",
               limit: this.limit_member,
               skip: this.start_member

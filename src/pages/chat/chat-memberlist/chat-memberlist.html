@@ -19,7 +19,7 @@
   <ion-list>
     <ion-item *ngFor="let item of items" (click)="goStartChat(item)">
       <ion-avatar item-left>
-        <img src="http://go.dataon.com:3002/api/containers/{{item.userid}}/download/{{item.pictures}}" onerror="this.src='assets/img/no-photo.png'">
+        <img src="http://go.dataon.com:3002/api/containers/temp_{{item.userid}}/download/{{item.pictures}}" onerror="this.src='assets/img/no-photo.png'">
       </ion-avatar>
       <h2>{{item.nama}}</h2>
     </ion-item>

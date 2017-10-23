@@ -98,91 +98,130 @@ export class ChatDetailsPage {
 
     this.storage.get('stuserid').then((stuserid) => {
       this.storage.get('roleid').then((roleid) => {
-
+        console.log(4444)
         if (roleid == 2) {
-          this.tmDosenApi.find({
-            where: {
-              userid: this.data.userid
-            }
-          }).subscribe(val => {
-            console.log(val, 'ini data dosen');
-            this.tmMahasiswaApi.find({
-              where: {
-                userid: stuserid
-              }
-            }).subscribe(req => {
-              this.user = req[0]['nama'];
-              this.idFrom = req[0]['userid'];
-
-              if (this.data != null || this.data != undefined) {
-                this.idGet = val[0]['userid'];
-                this.nameGet = val[0]['nama'];
-                this.header = this.idFrom + '_' + val[0]['userid'];
-                this.idTo = this.idGet;
-                this.status = true;
-
-               this.declareChat();
-                this.startEmit();
-
-              } else {
-                console.log('ko masuk sini');
-                
-                if (this.arr.createdFirst == this.idFrom) {
-                  this.idTo = this.arr.createdSecond;
-                } else if (this.arr.createdFirst != this.idFrom) {
-                  this.idTo = this.arr.createdFirst;
-                }
-                this.header = this.arr.headerChat;
-                this.nameGet = this.arr.toname;
-
-               this.declareChat();
-                this.startEmit();
-              }
-            });
-
-          });
-        } else {
-
           this.tmMahasiswaApi.find({
             where: {
-              userid: this.arr.createdSecond
+              userid: stuserid
             }
-          }).subscribe(val => {
-            console.log(val, 'ini data dosen');
-            this.tmDosenApi.find({
-              where: {
-                userid: stuserid
-              }
-            }).subscribe(req => {
-              this.user = req[0]['nama'];
-              this.idFrom = req[0]['userid'];
-
-              if (this.data != null || this.data != undefined) {
+          }).subscribe(req => {
+            this.user = req[0]['nama'];
+            this.idFrom = req[0]['userid'];
+            if (this.data != null || this.data != undefined) {
+              this.tmDosenApi.find({
+                where: {
+                  userid: this.data.userid
+                }
+              }).subscribe(val => {
                 this.idGet = val[0]['userid'];
                 this.nameGet = val[0]['nama'];
                 this.header = this.idFrom + '_' + val[0]['userid'];
                 this.idTo = this.idGet;
                 this.status = true;
 
-               this.declareChat();
+                this.declareChat();
                 this.startEmit();
+              })
+            } else {
+              console.log(13);
 
-              } else {
-                if (this.arr.createdFirst == this.idFrom) {
-                  this.idTo = this.arr.createdSecond;
-                } else if (this.arr.createdFirst != this.idFrom) {
-                  this.idTo = this.arr.createdFirst;
-                }
-                this.header = this.arr.headerChat;
-                this.nameGet = this.arr.toname;
-
-               this.declareChat();
-                this.startEmit();
+              if (this.arr.createdFirst == this.idFrom) {
+                this.idTo = this.arr.createdSecond;
+              } else if (this.arr.createdFirst != this.idFrom) {
+                this.idTo = this.arr.createdFirst;
               }
-            });
+              this.header = this.arr.headerChat;
+              this.nameGet = this.arr.fromname;
+
+              this.declareChat();
+              this.startEmit();
+            }
+          })
+
+
+          // 
+          // this.tmDosenApi.find({
+          //   where: {
+          //     userid: this.data.userid
+          //   }
+          // }).subscribe(val => {
+          //   console.log(val, 'ini data dosen');
+          //   this.tmMahasiswaApi.find({
+          //     where: {
+          //       userid: stuserid
+          //     }
+          //   }).subscribe(req => {
+          //     this.user = req[0]['nama'];
+          //     this.idFrom = req[0]['userid'];
+
+          //     if (this.data != null || this.data != undefined) {
+          //       this.idGet = val[0]['userid'];
+          //       this.nameGet = val[0]['nama'];
+          //       this.header = this.idFrom + '_' + val[0]['userid'];
+          //       this.idTo = this.idGet;
+          //       this.status = true;
+
+          //       this.declareChat();
+          //       this.startEmit();
+
+          //     } else {
+          //       console.log('ko masuk sini');
+
+          //       if (this.arr.createdFirst == this.idFrom) {
+          //         this.idTo = this.arr.createdSecond;
+          //       } else if (this.arr.createdFirst != this.idFrom) {
+          //         this.idTo = this.arr.createdFirst;
+          //       }
+          //       this.header = this.arr.headerChat;
+          //       this.nameGet = this.arr.toname;
+
+          //       this.declareChat();
+          //       this.startEmit();
+          //     }
+          //   });
+
+          // });
+        } else {
+
+          this.tmDosenApi.find({
+            where: {
+              userid: stuserid
+            }
+          }).subscribe(req => {
+            this.user = req[0]['nama'];
+            this.idFrom = req[0]['userid'];
+
+            if (this.data != null || this.data != undefined) {
+              this.tmMahasiswaApi.find({
+                where: {
+                  userid: this.data.userid
+                }
+              }).subscribe(val => {
+                this.idGet = val[0]['userid'];
+                this.nameGet = val[0]['nama'];
+                this.header = this.idFrom + '_' + val[0]['userid'];
+                this.idTo = this.idGet;
+                this.status = true;
+
+                this.declareChat();
+                this.startEmit();
+              });
+            } else {
+              if (this.arr.createdFirst == this.idFrom) {
+                this.idTo = this.arr.createdSecond;
+              } else if (this.arr.createdFirst != this.idFrom) {
+                this.idTo = this.arr.createdFirst;
+              }
+              this.header = this.arr.headerChat;
+              this.nameGet = this.arr.fromname;
+              
+              this.declareChat();
+              this.startEmit();
+            }
+
 
           });
-          
+
         }
       });
 
@@ -211,7 +250,7 @@ export class ChatDetailsPage {
       fromname: this.user,
       toname: this.nameGet
     }).subscribe((result) => {
-      console.log(result,'sueeeeeee');
+      console.log(result, 'sueeeeeee');
       this.txtChat.content = '';
       this.newMessage = '';
       console.log('Send Chat Message');
@@ -223,13 +262,14 @@ export class ChatDetailsPage {
           fromname: this.user,
           toname: this.nameGet
         }).subscribe((res) => {
-          console.log(res,'Sukses Chat Header')
-           this.content.scrollToBottom(this.scrollSpeed);
+          console.log(res, 'Sukses Chat Header')
+          this.content.scrollToBottom(this.scrollSpeed);
           this.keyboard.show();
           this.txtChat.clearInput();
           this.txtChat.setFocus();
           this.txtChat.content = '';
           this.events.subscribe('list:update');
+          this.status = false;
         })
       }
 
@@ -239,11 +279,11 @@ export class ChatDetailsPage {
   public declareChat(): void {
     this.subscriptions.push(
       this.realTime.onReady().subscribe(() => {
-        console.log('header',this.header);
+        console.log('header', this.header);
         this.realTime.IO.on('CHAT' + this.header)
           .subscribe((result) => {
             //console.log(result,'RESULT APP');
-            
+
             this.dataChat = JSON.parse(result);
 
             for (let i = 0; i < this.dataChat.length; i++) {
@@ -253,7 +293,7 @@ export class ChatDetailsPage {
                 this.isMe = false;
               }
               this.dataChat[i].isMe = this.isMe;
-             // console.log(this.dataChat, 'Chat Server');
+              // console.log(this.dataChat, 'Chat Server');
             }
           }, (error) => {
             console.log(error);

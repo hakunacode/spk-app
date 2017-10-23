@@ -15,7 +15,7 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'changepassword.html',
 })
 export class ChangepasswordPage {
- passwordcurrent: any;
+  passwordcurrent: any;
   passwordnew: any;
   passwordconfirm: any;
   constructor(
@@ -24,7 +24,7 @@ export class ChangepasswordPage {
     public storage: Storage,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,
-    public authApi : AuthApi
+    public authApi: AuthApi
   ) {
   }
 
@@ -52,24 +52,24 @@ export class ChangepasswordPage {
     // start 
     this.storage.ready().then(() => {
       this.storage.get('stuserid').then((stuserid) => {
-          // begin
-          this.authApi.changePass({
-            userid: stuserid,
-            oldPassword: this.passwordcurrent,
-            newPassword: this.passwordnew
-          }).subscribe(value => {
-            loading.dismiss().then(value => {
-              this.alertCtrl.create({
-                message: 'Password has been successfully changed.',
-                buttons: [{
-                  text: 'OK',
-                  handler: data => {
-                    this.navCtrl.setRoot(MyProfilePage)
-                  }
-                }]
-              }).present();
-            });
+        // begin
+        this.authApi.changePass({
+          userid: stuserid,
+          oldPassword: this.passwordcurrent,
+          newPassword: this.passwordnew
+        }).subscribe(value => {
+          loading.dismiss().then(value => {
+            this.alertCtrl.create({
+              message: 'Password has been successfully changed.',
+              buttons: [{
+                text: 'OK',
+                handler: data => {
+                  this.navCtrl.setRoot(MyProfilePage)
+                }
+              }]
+            }).present();
           });
+        });
       });
     });
   }

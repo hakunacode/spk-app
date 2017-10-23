@@ -21,11 +21,11 @@
     <ion-item-divider>
       Daftar Mahasiswa
     </ion-item-divider>
-    <button ion-item *ngFor="let item of items">
+    <button ion-item *ngFor="let item of items" (click)="detailMhs(item.nim)">
       <ion-avatar item-left>
         <img src="" onerror="this.src='assets/img/no-photo.gif'" />
       </ion-avatar>
-      <div (click)="detailMhs(item.nim)">
+      <div>
         <h2 style="font-size: 0.9em;">{{item.namamhs}}</h2>
         <p>{{item.nim}}</p>
       </div>
